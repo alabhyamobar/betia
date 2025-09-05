@@ -97,5 +97,22 @@ tl.fromTo(
 //   }
 // );
 
+tl.fromTo(
+  ".table",
+  {
+    scale: 0,
+    transformOrigin: "center center",
+  },
+  { scale: 1, duration: 1, ease: "elastic.out(1,0.5)",stagger: 0.3 },
+  "-=1"
+);
 
-
+tl.fromTo(
+  ".cake",
+  {
+    scale: 0,
+    transformOrigin: "center center",
+  },
+  { delay:1, scale: 1, duration: 1, ease: "elastic.out(1,0.5)" },
+  "-=1"
+);
