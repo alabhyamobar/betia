@@ -64,7 +64,7 @@ tl.fromTo(
 );
 
 tl.fromTo(
-  rock,
+  "#mada",
   {
     opacity: 0,
     rotationX: 90,
@@ -78,4 +78,24 @@ tl.fromTo(
     ease: "elastic.out(1, 0.5)", // rebound / bounce
   }
 );
+
+// rock animation
+
+// tl.fromTo(
+//   rock,
+//   {
+//     opacity: 0,
+//     rotationX: 90,
+//     transformOrigin: "bottom center", // pivot from the roots
+//   },
+//   {
+//     opacity: 1,
+//     rotationX: 0,
+//     duration: 2,
+//     stagger: 0.3,
+//     ease: "elastic.out(1, 0.5)", // rebound / bounce
+//   }
+// );
+
+
 

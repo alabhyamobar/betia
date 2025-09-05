@@ -8,13 +8,13 @@
     <link rel="stylesheet" href="/src/style.css" />
 </head>
 
-<body>
+<body class="overflow-hidden">
     <div class="main h-screen w-screen bg-[url('/images/sceen2.webp')] bg-cover bg-no-repeat bg-center relative">
         <!-- Clouds -->
-        <div class="sky flex w-full justify-between gap-10 items-center absolute top-0 left-0 z-40">
-            <img class="h-[250px] w-[300px] drop-shadow-[0_0_15px_rgba(0,0,0,0.6)]" src="/images/cloud2(1).webp" alt="">
-            <img class="h-[250px] w-[300px] drop-shadow-[0_0_15px_rgba(0,0,0,0.6)]" src="/images/cloud2(1).webp" alt="">
-            <img class="h-[250px] w-[300px] drop-shadow-[0_0_15px_rgba(0,0,0,0.6)]" src="/images/cloud2(1).webp" alt="">
+        <div class="sky flex w-full justify-between gap-10 items-center absolute -top-10 left-0 z-40">
+            <img class="h-[250px] w-[300px] drop-shadow-[0_0_15px_rgba(0,0,0,0.6)]" src="/images/cloud2.png" alt="">
+            <img class="h-[250px] w-[300px] drop-shadow-[0_0_15px_rgba(0,0,0,0.6)]" src="/images/cloud2.png" alt="">
+            <img class="h-[250px] w-[300px] drop-shadow-[0_0_15px_rgba(0,0,0,0.6)]" src="/images/cloud2.png" alt="">
         </div>
 
         <!-- Trees -->
@@ -28,13 +28,13 @@
         </div>
 
         <!-- Grass -->
-        <div class="grass w-full absolute bottom-0 left-0 z-30">
+        <div class="grass w-full absolute -bottom-[10%] left-0 z-30">
             <img class="h-[700px] w-full object-cover" src="/images/grass2.webp" alt="">
         </div>
 
         <div class="absolute bottom-1/2 left-1/2 -translate-x-1/2 translate-y-[80%] z-60">
             <!-- Rock -->
-            <img class="rock h-[40vh] w-[40vh] relative z-10" src="/images/rock3.webp" alt="">
+            <img class="rock h-[40vh] w-[40vh] relative z-10 invisible" src="/images/rock3.webp" alt="">
 
             <!-- Message on Rock -->
             <div class="message absolute -top-1/15 left-1/2 -translate-x-1/2 -translate-y-1/2 
@@ -53,7 +53,16 @@
             </div>
         </div>
     </div>
-    
+
+    <div id="nar" class="nar absolute bottom-20 left-40 z-30">
+        <img class="w-[180px] h-[350px] object-contain" src="/public/images/nar.webp" alt="">
+    </div>
+
+    <div id="mada" class="absolute bottom-25 left-[80%] z-30">
+        <img class="w-[300px] h-[300px] object-contain" src="/public/images/Mada.webp" alt="">
+    </div>
+
+
     <script type="module" src="/src/celebrate.js"></script>
 </body>
 
