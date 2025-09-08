@@ -208,4 +208,19 @@ cake.addEventListener("click", () => {
   });
 });
 
-
+var tl2 = gsap.timeline();
+const rock = document.querySelector(".rock");
+cake.addEventListener("click",()=>{
+  if (!started) {
+    started = true;
+    typeWriter();
+  }
+  tl2.to(rock, {
+    visibility:"visible",
+    height: "90vh",
+    width: "50vw",
+    y: "-50%",
+    duration: 1,
+    ease: "elastic.out(1, 0.5)",
+  });
+})
