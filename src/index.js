@@ -149,6 +149,8 @@ const nar = document.getElementById("nar");
 let currentVine = null;
 let count = 0;
 
+const serious = document.getElementById("serious");
+const safaai = document.getElementById("safaai");
 vines.forEach((vine) => {
   vine.addEventListener("click", () => {
     const vineRect = vine.getBoundingClientRect();
@@ -236,6 +238,10 @@ vines.forEach((vine) => {
         );
     }
     if (count == 8) {
+      serious.play();
+      cartoons.pause();
+      serious.volume = 0.1;
+      safaai.play();
       gsap.to(nar, {
         marginRight: "30px",
         y: 0, // reset vertical transform (if you also want original height)
@@ -296,9 +302,10 @@ rock.addEventListener("click", () => {
   })
 });
 
-
+const guide = document.getElementById("guide");
 
 button.addEventListener("click", () => {
+  guide.play();
   tl2.to("#typing-text",{
     display:"none"
   })

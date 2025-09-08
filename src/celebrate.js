@@ -1,9 +1,15 @@
 import gsap from "gsap";
 
-var tl = gsap.timeline();
+
+const appritation = document.getElementById("appritation");
+const cartoons = document.getElementById("cartoons");
+const cutting = document.getElementById("cutting");
+const completion = document.getElementById("completion");
+const gaana = document.getElementById("gaana")
+cartoons.play();
+var tl = gsap.timeline({onComplete:()=>{appritation.play(), cartoons.volume=0.2}});
 
 const start = document.querySelector(".start");
-
 tl.fromTo(
   ".sky img",
   {
@@ -132,8 +138,13 @@ tl.fromTo(
 const mada = document.querySelector("#mada");
 
 let clicked = false;
+const audio1 = document.getElementById("audio1");
 start.addEventListener("click", () => {
-  
+  audio1.play();
+  cartoons.pause();
+  setTimeout(()=>{
+    cutting.play()
+  },2000)
   clicked = true;
   document.addEventListener("mousemove", (e) => {
     mada.style.left = `${e.clientX}px`;
@@ -165,7 +176,7 @@ start.addEventListener("click", () => {
   }
 });
 
-var tl2 = gsap.timeline({paused: true});
+var tl2 = gsap.timeline({ paused: true });
 let started = false;
 
 const cake = document.querySelector(".cake");
@@ -182,7 +193,7 @@ cake.addEventListener("click", () => {
   img.style.bottom = "-150px";
   img.className = "baloon-img";
 
-  const arr = new Array(50).fill(0);
+  const arr = new Array(100).fill(0);
   arr.forEach(() => {
     const cloneImg = img.cloneNode(true);
 
@@ -199,7 +210,6 @@ cake.addEventListener("click", () => {
       ease: "linear",
       onComplete: () => {
         tl2.play();
-
       },
     });
 
@@ -212,7 +222,6 @@ cake.addEventListener("click", () => {
     });
   });
 });
-
 
 const text = `Happiest birthday anup mahadev kare tu jo chae wo tujhe mile tu wo sab hasil kare jo chati hai tu zindagi bhar ajeeb mu banati rahe aur mujhe hamesha gawaar bulati rahe🌿🦜🌺`;
 
@@ -232,15 +241,21 @@ function typeWriter() {
   }
 }
 
+const song = document.getElementById("audio2");
 cake.addEventListener("click", () => {
+  audio1.volume = 0.5;
+  setTimeout(() => {
+    song.play();
+  }, 500);
   setTimeout(() => {
     if (!started) {
-    started = true;
-    typeWriter();
-  }
-  },14000);
+      started = true;
+      typeWriter();
+      audio1.volume = 0.8;
+    }
+  }, 14000);
   tl2.to(rock, {
-    visibility:"visible",
+    visibility: "visible",
     height: "90vh",
     width: "50vw",
     y: "-50%",
@@ -248,7 +263,19 @@ cake.addEventListener("click", () => {
     duration: 1,
     ease: "elastic.out(1, 0.5)",
   });
-  tl2.to(".message",{
-    visibility:"visible"
-  })
+  tl2.to(".message", {
+    visibility: "visible",
+  });
 });
+
+
+button.addEventListener('click',()=>{
+  setTimeout(()=>{
+    completion.play();
+  },1000)
+})
+
+completion.addEventListener('ended',()=>{
+  gaana.play();
+  gaana.duration = 15000
+})
