@@ -199,6 +199,7 @@ cake.addEventListener("click", () => {
       ease: "linear",
       onComplete: () => {
         tl2.play();
+        
       },
     });
 
