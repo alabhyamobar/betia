@@ -165,8 +165,12 @@ start.addEventListener("click", () => {
   }
 });
 
+var tl2 = gsap.timeline({paused: true});
+let started = false;
+
 const cake = document.querySelector(".cake");
 cake.addEventListener("click", () => {
+  tl2.play();
   const baloon = document.querySelector(".baloon");
   const viewportWidth = window.innerWidth;
 
@@ -208,19 +212,41 @@ cake.addEventListener("click", () => {
   });
 });
 
-var tl2 = gsap.timeline();
+
+const text = `Happiest birthday anup mahadev kare tu jo chae wo tujhe mile tu wo sab hasil kare jo chati hai tu zindagi bhar ajeeb mu banati rahe aur mujhe hamesha gawaar bulati rahe🌿🦜🌺`;
+
+const typingElement = document.getElementById("typing-text");
+const button = document.getElementById("chalo-btn");
 const rock = document.querySelector(".rock");
-cake.addEventListener("click",()=>{
-  if (!started) {
+
+let i = 0;
+function typeWriter() {
+  if (i < text.length) {
+    typingElement.textContent += text.charAt(i);
+    i++;
+    setTimeout(typeWriter, 40); // typing speed
+  } else {
+    // After typing is complete -> fade in button
+    gsap.to(button, { opacity: 1, duration: 1, ease: "power2.out" });
+  }
+}
+
+cake.addEventListener("click", () => {
+  setTimeout(() => {
+    if (!started) {
     started = true;
     typeWriter();
   }
+  },14000);
   tl2.to(rock, {
-    visibility:"visible",
     height: "90vh",
     width: "50vw",
     y: "-50%",
+    delay: 13.5,
     duration: 1,
     ease: "elastic.out(1, 0.5)",
   });
-})
+  tl2.to(".message",{
+    visibility:"visible"
+  })
+});
