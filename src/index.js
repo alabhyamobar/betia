@@ -297,6 +297,7 @@ rock.addEventListener("click", () => {
 });
 
 
+
 button.addEventListener("click", () => {
   tl2.to("#typing-text",{
     display:"none"
@@ -318,3 +319,44 @@ button.addEventListener("click", () => {
   animateVine();
   
 })
+
+
+
+const text2 = `Mai poore dil se late aane ke liye maafi maangna chata hu or iss se pahile tum mujhe utha utha ke pheko kyu na hum tumehere birthday ka celebration ker le Anup! fir mujhe aaram se peet lena 🎂🎉🎈🌸`;
+
+const typingElement2 = document.getElementById("typing-text2");
+const button2 = document.getElementById("chalo-btn2");
+
+let j = 0;
+let started2 = false; // prevent multiple runs
+
+function typeWriter2() {
+  if (j < text2.length) {
+    typingElement2.textContent += text2.charAt(j);
+    j++;
+    setTimeout(typeWriter2, 40); // typing speed
+  } else {
+    // After typing is complete -> fade in button
+    gsap.to(button2, { opacity: 1, duration: 1, ease: "power2.out" });
+  }
+}
+
+const rock2 = document.querySelector(".rock2");
+
+const tl3 = gsap.timeline() 
+rock2.addEventListener("click", () => {
+  if (!started2) {
+    started2 = true;
+    typeWriter2();
+  }
+  tl3.to(rock2, {
+    height: "90vh",
+    width: "50vw",
+    y: "-50%",
+    duration: 1,
+    ease: "elastic.out(1, 0.5)",
+  });
+  tl3.to(".message2",{
+    visibility:"visible"
+  })
+});

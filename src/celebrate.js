@@ -2,6 +2,8 @@ import gsap from "gsap";
 
 var tl = gsap.timeline();
 
+const start = document.querySelector(".start");
+
 tl.fromTo(
   ".sky img",
   {
@@ -79,23 +81,17 @@ tl.fromTo(
   }
 );
 
-// rock animation
+//
 
-// tl.fromTo(
-//   rock,
-//   {
-//     opacity: 0,
-//     rotationX: 90,
-//     transformOrigin: "bottom center", // pivot from the roots
-//   },
-//   {
-//     opacity: 1,
-//     rotationX: 0,
-//     duration: 2,
-//     stagger: 0.3,
-//     ease: "elastic.out(1, 0.5)", // rebound / bounce
-//   }
-// );
+tl.fromTo(
+  ".banner",
+  {
+    scale: 0,
+    transformOrigin: "center center",
+  },
+  { scale: 1, duration: 1, ease: "elastic.out(1,0.5)" },
+  "-=1"
+);
 
 tl.fromTo(
   ".table",
@@ -103,7 +99,7 @@ tl.fromTo(
     scale: 0,
     transformOrigin: "center center",
   },
-  { scale: 1, duration: 1, ease: "elastic.out(1,0.5)",stagger: 0.3 },
+  { scale: 1, duration: 1, ease: "elastic.out(1,0.5)", stagger: 0.3 },
   "-=1"
 );
 
@@ -113,6 +109,103 @@ tl.fromTo(
     scale: 0,
     transformOrigin: "center center",
   },
-  { delay:1, scale: 1, duration: 1, ease: "elastic.out(1,0.5)" },
+  { delay: 1, scale: 1, duration: 1 },
   "-=1"
 );
+
+tl.fromTo(
+  start,
+  {
+    opacity: 0,
+    rotationX: 90,
+    transformOrigin: "bottom center", // pivot from the roots
+  },
+  {
+    opacity: 1,
+    rotationX: 0,
+    duration: 2,
+    stagger: 0.3,
+    ease: "elastic.out(1, 0.5)", // rebound / bounce
+  }
+);
+
+const mada = document.querySelector("#mada");
+
+let clicked = false;
+start.addEventListener("click", () => {
+  
+  clicked = true;
+  document.addEventListener("mousemove", (e) => {
+    mada.style.left = `${e.clientX}px`;
+    mada.style.top = `${e.clientY}px`;
+    mada.style.zIndex = 201;
+  });
+
+  const cake = document.querySelector(".cake");
+  // cake cutting animation
+  if (clicked) {
+    cake.addEventListener("click", () => {
+      gsap.to(cake, {
+        opacity: 0,
+        duration: 0.5,
+        onComplete: () => {
+          const sliceCake = document.querySelector(".slice-cake");
+          sliceCake.classList.remove("hidden");
+          gsap.fromTo(
+            sliceCake,
+            {
+              scale: 0,
+              transformOrigin: "center center",
+            },
+            { scale: 1, duration: 1, ease: "elastic.out(1,0.5)" }
+          );
+        },
+      });
+    });
+  }
+});
+
+const cake = document.querySelector(".cake");
+cake.addEventListener("click", () => {
+  const baloon = document.querySelector(".baloon");
+  const viewportWidth = window.innerWidth;
+
+  const img = document.createElement("img");
+  img.src = "public/images/baloon.png";
+  img.height = 100;
+  img.width = 60;
+  img.style.position = "absolute";
+  img.style.bottom = "-150px";
+  img.className = "baloon-img";
+
+  const arr = new Array(50).fill(0);
+  arr.forEach(() => {
+    const cloneImg = img.cloneNode(true);
+
+    // random x position across viewport
+    const randomX = Math.random() * (viewportWidth - cloneImg.width);
+    cloneImg.style.left = `${randomX}px`;
+
+    baloon.appendChild(cloneImg);
+
+    gsap.to(cloneImg, {
+      y: -window.innerHeight - 200, // move up off-screen
+      duration: 1 + Math.random() * 1, // random float speed
+      delay: Math.random() * 2,
+      ease: "linear",
+      onComplete: () => {
+        tl2.play();
+      },
+    });
+
+    gsap.to(cloneImg, {
+      rotation: "+=15", // small oscillation
+      duration: 2 + Math.random() * 2,
+      yoyo: true,
+      repeat: -1,
+      ease: "sine.inOut",
+    });
+  });
+});
+
+
