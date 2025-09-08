@@ -199,7 +199,7 @@ cake.addEventListener("click", () => {
       ease: "linear",
       onComplete: () => {
         tl2.play();
-        
+
       },
     });
 
@@ -240,6 +240,7 @@ cake.addEventListener("click", () => {
   }
   },14000);
   tl2.to(rock, {
+    visibility:"visible",
     height: "90vh",
     width: "50vw",
     y: "-50%",
